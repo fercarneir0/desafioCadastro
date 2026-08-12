@@ -1,5 +1,6 @@
 package br.com.desafiocadastro.view;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ConsoleInput {
@@ -21,8 +22,22 @@ public class ConsoleInput {
                 double valor = scan.nextDouble();
                 scan.nextLine();
                 return valor;
-            } catch (IllegalArgumentException e){
+            } catch (InputMismatchException e){
                 System.out.println("Erro: Por favor digite apenas valores válidos!");
+            }
+        }
+    }
+
+    public int lerInt(String mensagem){
+        while(true){
+            System.out.println(mensagem);
+
+            try{
+                int valor = scan.nextInt();
+                scan.nextLine();
+                return valor;
+            } catch (InputMismatchException e){
+                System.out.println("Erro: por favor digite apenas valores válidos");
             }
         }
     }
