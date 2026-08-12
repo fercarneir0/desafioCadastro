@@ -1,13 +1,13 @@
 package br.com.desafiocadastro.domain.model;
 
-import br.com.desafiocadastro.domain.enums.sexoAnimal;
-import br.com.desafiocadastro.domain.enums.tipoAnimal;
+import br.com.desafiocadastro.domain.enums.SexoAnimal;
+import br.com.desafiocadastro.domain.enums.TipoAnimal;
 
 public class Pet {
 
     private String nome;
-    private tipoAnimal tipoAnimal;
-    private sexoAnimal sexoAnimal;
+    private TipoAnimal tipoAnimal;
+    private SexoAnimal sexoAnimal;
     private String endereco;
     private String bairro;
     private double idade;
@@ -20,22 +20,25 @@ public class Pet {
     }
 
     public void setNome(String nome) {
+        if(nome == null || !nome.matches("[a-zA-zÀ-ÿ\\s]+")){
+            throw new IllegalArgumentException("O nome do animal deve conter apenas letras e espaços");
+        }
         this.nome = nome;
     }
 
-    public tipoAnimal getTipoAnimal() {
+    public TipoAnimal getTipoAnimal() {
         return tipoAnimal;
     }
 
-    public void setTipoAnimal(tipoAnimal tipoAnimal) {
+    public void setTipoAnimal(TipoAnimal tipoAnimal) {
         this.tipoAnimal = tipoAnimal;
     }
 
-    public sexoAnimal getSexoAnimal() {
+    public SexoAnimal getSexoAnimal() {
         return sexoAnimal;
     }
 
-    public void setSexoAnimal(sexoAnimal sexoAnimal) {
+    public void setSexoAnimal(SexoAnimal sexoAnimal) {
         this.sexoAnimal = sexoAnimal;
     }
 
@@ -60,6 +63,9 @@ public class Pet {
     }
 
     public void setIdade(double idade) {
+        if(idade > 20){
+            throw new IllegalArgumentException("Idade maior que 20 anos não é permitida");
+        }
         this.idade = idade;
     }
 
@@ -68,6 +74,9 @@ public class Pet {
     }
 
     public void setPeso(double peso) {
+        if(peso < 0.5 || peso > 60){
+            throw new IllegalArgumentException("O peso menor que 0.5kg ou maior que 60kg não é permitido!");
+        }
         this.peso = peso;
     }
 

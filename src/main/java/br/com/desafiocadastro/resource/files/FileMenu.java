@@ -1,31 +1,36 @@
 package br.com.desafiocadastro.resource.files;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileMenu {
 
     File file = new File("C:\\Users\\luis1\\IdeaProjects\\desafioCadastro\\src\\main\\java\\br\\com\\desafiocadastro\\resource\\formulario.txt");
-//
-//    public void escreverArquivo(){
-//        try (FileWriter fileWriter = new FileWriter(file)){
-//            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-//            String linha;
-//            bufferedWriter.write("1 - Qual o nome e sobrenome do pet?\n2 - Qual o tipo do pet?\n3 - Qual o sexo do animal?\n4 - Qual endereço e bairro que ele foi encontrado?");
-//            bufferedWriter.write("\n5 - Qual a idade aproximada do pet?\n6 - Qual o peso aproximado do pet?\n7 - Qual a raça do pet?");
-//            bufferedWriter.flush();
-//        } catch (IOException ex) {
-//            throw new RuntimeException(ex);
-//        }
-//    }
 
-    public void lerArquivo(){
-        try (FileReader fileReader = new FileReader(file); BufferedReader bufferedReader = new BufferedReader(fileReader)){
+    public List<String> lerArquivo() {
+        List<String> linhaDoArquivo = new ArrayList<>();
+
+        try (FileReader fr = new FileReader(file); BufferedReader bfr = new BufferedReader(fr)) {
             String linha;
-            while((linha = bufferedReader.readLine()) != null){
-                System.out.println(linha);
+            while ((linha = bfr.readLine()) != null) {
+                linhaDoArquivo.add(linha);
             }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("Arquivo não encontrado");
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+        return linhaDoArquivo;
+    }
+
+    public String pegarLinhas(int posicao) {
+        List<String> linhas = this.lerArquivo();
+
+        if (posicao >= 0 && posicao < linhas.size()) {
+            return linhas.get(posicao);
+        } else {
+            return "Posição inválida ou linha não encontrada.";
         }
     }
 }
