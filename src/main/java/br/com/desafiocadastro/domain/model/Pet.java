@@ -20,7 +20,7 @@ public class Pet {
     }
 
     public void setNome(String nome) {
-        if(nome == null || !nome.matches("[a-zA-zÀ-ÿ\\s]+")){
+        if(nome == null || !nome.matches("[a-zA-ZÀ-ÿ\\s]+")){
             throw new IllegalArgumentException("O nome do animal deve conter apenas letras e espaços");
         }
         this.nome = nome;
@@ -47,6 +47,9 @@ public class Pet {
     }
 
     public void setEndereco(String endereco) {
+        if(endereco == null || !endereco.matches("[a-zA-ZÀ-ÿ0-9\\s.,-]+")){
+            throw new IllegalArgumentException("O endereço não pode conter carácteres especias");
+        }
         this.endereco = endereco;
     }
 
@@ -85,7 +88,7 @@ public class Pet {
     }
 
     public void setRaca(String raca) {
-        if(raca == null || !raca.matches("[a-zA-zÀ-ÿ\\s]+")){
+        if(raca == null || !raca.matches("[a-zA-ZÀ-ÿ\\s]+")){
             throw new IllegalArgumentException("A raça do animal deve conter apenas letras e espaços");
         }
         this.raca = raca;
