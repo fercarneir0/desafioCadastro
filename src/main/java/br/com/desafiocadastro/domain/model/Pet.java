@@ -1,13 +1,13 @@
 package br.com.desafiocadastro.domain.model;
 
-import br.com.desafiocadastro.domain.enums.sexoAnimal;
-import br.com.desafiocadastro.domain.enums.tipoAnimal;
+import br.com.desafiocadastro.domain.enums.SexoAnimal;
+import br.com.desafiocadastro.domain.enums.TipoAnimal;
 
 public class Pet {
 
     private String nome;
-    private tipoAnimal tipoAnimal;
-    private sexoAnimal sexoAnimal;
+    private TipoAnimal tipoAnimal;
+    private SexoAnimal sexoAnimal;
     private String endereco;
     private String bairro;
     private double idade;
@@ -23,19 +23,19 @@ public class Pet {
         this.nome = nome;
     }
 
-    public tipoAnimal getTipoAnimal() {
+    public TipoAnimal getTipoAnimal() {
         return tipoAnimal;
     }
 
-    public void setTipoAnimal(tipoAnimal tipoAnimal) {
+    public void setTipoAnimal(TipoAnimal tipoAnimal) {
         this.tipoAnimal = tipoAnimal;
     }
 
-    public sexoAnimal getSexoAnimal() {
+    public SexoAnimal getSexoAnimal() {
         return sexoAnimal;
     }
 
-    public void setSexoAnimal(sexoAnimal sexoAnimal) {
+    public void setSexoAnimal(SexoAnimal sexoAnimal) {
         this.sexoAnimal = sexoAnimal;
     }
 
