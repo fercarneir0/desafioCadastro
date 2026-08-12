@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("");
+        FileMenu fileMenu = new FileMenu();
+        System.out.println(fileMenu.pegarLinhas(1));
     }
 }
