@@ -85,6 +85,9 @@ public class Pet {
     }
 
     public void setRaca(String raca) {
+        if(raca == null || !raca.matches("[a-zA-zÀ-ÿ\\s]+")){
+            throw new IllegalArgumentException("A raça do animal deve conter apenas letras e espaços");
+        }
         this.raca = raca;
     }
 }
