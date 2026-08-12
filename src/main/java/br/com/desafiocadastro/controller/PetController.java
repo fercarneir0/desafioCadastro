@@ -4,68 +4,70 @@ import br.com.desafiocadastro.domain.enums.SexoAnimal;
 import br.com.desafiocadastro.domain.enums.TipoAnimal;
 import br.com.desafiocadastro.domain.model.Pet;
 import br.com.desafiocadastro.resource.files.FileMenu;
+import br.com.desafiocadastro.view.ConsoleInput;
 
 import java.util.Scanner;
 
 public class PetController {
-
+    FileMenu file;
+    ConsoleInput input;
 
     public void cadastrarPet() {
-        FileMenu file = new FileMenu();
-        Scanner scan = new Scanner(System.in);
-        Pet pet = new Pet();
+    }
 
-        System.out.println("------ PREENCHA AS INFORMACOES DO PET -----------");
-        System.out.println(file.pegarLinhas(0));
-        String nome = scan.nextLine();
-        pet.setNome(nome);
-        System.out.println(nome);
+    public void cadastrarNome(Pet pet) {
+        String nomeDigitado = input.lerString(file.pegarLinhas(0));
 
-        System.out.println(file.pegarLinhas(1));
-        System.out.println("ESCOLHA 1-CACHORRO 2-GATO");
-        int codigoTipoAnimal = scan.nextInt();
-        try {
-            TipoAnimal tipo = TipoAnimal.getTipoPorCodigo(codigoTipoAnimal);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            System.out.print("Por favor, tente novamente!");
+        while (true) {
+            try {
+                pet.setNome(nomeDigitado);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Por favor tente novamente\n");
+            }
         }
+    }
 
-        System.out.println(file.pegarLinhas(2));
-        System.out.println("ESCOLHA 1-MACHO 2-FEMEA");
-        int codigoSexo = scan.nextInt();
-        try {
-            SexoAnimal sexo = SexoAnimal.getTipoPorCodigo(codigoSexo);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            System.out.print("Por favor, tente novamente!");
+    public void cadastrarIdade(Pet pet) {
+        while (true) {
+            double idadeDigitada = input.lerDouble(file.pegarLinhas(4));
+
+            try {
+                pet.setIdade(idadeDigitada);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Por favor, tente novamente");
+            }
         }
+    }
 
-        System.out.println(file.pegarLinhas(3));
-        String endereco = scan.next();
-        scan.nextLine();
-        pet.setEndereco(endereco);
+    public void cadastrarPeso(Pet pet) {
+        while (true) {
+            double pesoDigitado = input.lerDouble(file.pegarLinhas(5));
 
-        System.out.println(file.pegarLinhas(4));
-        double idade = scan.nextDouble();
-        try {
-            pet.setIdade(idade);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            System.out.print("Por favor, tente novamente!");
+            try {
+                pet.setPeso(pesoDigitado);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Por favor, tente novamente");
+            }
         }
+    }
 
-        System.out.println(file.pegarLinhas(5));
-        double peso = scan.nextDouble();
-        try{
-            pet.setPeso(peso);
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            System.out.println("Por favor, tente novamente!");
+    public void cadastrarRaca(Pet pet) {
+        while (true) {
+            String racaDigitada = input.lerString(file.pegarLinhas(6));
+
+            try {
+                pet.setRaca(racaDigitada);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Por favor, tente novamente");
+            }
         }
-
-        System.out.println(file.pegarLinhas(6));
-        String raca = scan.nextLine();
-        pet.setRaca(raca);
     }
 }
