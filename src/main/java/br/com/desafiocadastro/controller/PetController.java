@@ -6,6 +6,7 @@ import br.com.desafiocadastro.domain.model.Pet;
 import br.com.desafiocadastro.resource.files.FileMenu;
 import br.com.desafiocadastro.view.ConsoleInput;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PetController {
@@ -25,6 +26,36 @@ public class PetController {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 System.out.println("Por favor tente novamente\n");
+            }
+        }
+    }
+
+    public void cadastrarTipo(Pet pet) {
+        while (true) {
+            int codigoDigitado = input.lerInt(file.pegarLinhas(1));
+
+            try {
+                TipoAnimal animalEscolhido = TipoAnimal.getTipoPorCodigo(codigoDigitado);
+                pet.setTipoAnimal(animalEscolhido);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Por favor, tente novamente");
+            }
+        }
+    }
+
+    public void cadastrarSexo(Pet pet){
+        while(true){
+            int codigoDigitado = input.lerInt(file.pegarLinhas(2));
+
+            try{
+                SexoAnimal sexoEscolhido = SexoAnimal.getTipoPorCodigo(codigoDigitado);
+                pet.setSexoAnimal(sexoEscolhido);
+                break;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                System.out.println("Por favor, tente novamente");
             }
         }
     }
