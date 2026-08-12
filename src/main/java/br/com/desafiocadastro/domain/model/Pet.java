@@ -20,6 +20,9 @@ public class Pet {
     }
 
     public void setNome(String nome) {
+        if(nome == null || !nome.matches("[a-zA-zÀ-ÿ\\s]+")){
+            throw new IllegalArgumentException("O nome do animal deve conter apenas letras e espaços");
+        }
         this.nome = nome;
     }
 
@@ -60,6 +63,9 @@ public class Pet {
     }
 
     public void setIdade(double idade) {
+        if(idade > 20){
+            throw new IllegalArgumentException("Idade maior que 20 anos não é permitida");
+        }
         this.idade = idade;
     }
 
@@ -68,6 +74,9 @@ public class Pet {
     }
 
     public void setPeso(double peso) {
+        if(peso < 0.5 || peso > 60){
+            throw new IllegalArgumentException("O peso menor que 0.5kg ou maior que 60kg não é permitido!");
+        }
         this.peso = peso;
     }
 
