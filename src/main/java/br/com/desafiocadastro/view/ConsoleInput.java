@@ -6,10 +6,6 @@ import java.util.Scanner;
 public class ConsoleInput {
     Scanner scan = new Scanner(System.in);
 
-    public ConsoleInput(Scanner scan) {
-        this.scan = scan;
-    }
-
     public String lerString(String mensagem) {
         System.out.println(mensagem);
         return scan.nextLine();
@@ -38,6 +34,25 @@ public class ConsoleInput {
                 return valor;
             } catch (InputMismatchException e){
                 System.out.println("Erro: por favor digite apenas valores válidos");
+            }
+        }
+    }
+
+    public String lerEndereco(String mensagem){
+        while(true){
+            System.out.println(mensagem);
+            try{
+                System.out.println("Digite o número da casa: ");
+                String numeroCasa = scan.nextLine();
+                System.out.println("Digite a cidade: ");
+                String cidade = scan.nextLine();
+                System.out.println("Digite a rua: ");
+                String rua = scan.nextLine();
+                String enderecoCompleto = rua + ", " + cidade + " N." + numeroCasa;
+                System.out.println("Endereco " + enderecoCompleto + " cadastrado com sucesso");
+                return enderecoCompleto;
+            } catch (IllegalArgumentException e){
+                System.out.println("Erro: por favor digite apenas letras, números e pontuação");
             }
         }
     }
