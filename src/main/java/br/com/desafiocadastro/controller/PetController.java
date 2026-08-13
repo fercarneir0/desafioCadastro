@@ -12,6 +12,19 @@ public class PetController {
     ConsoleInput input = new ConsoleInput();
 
     public void cadastrarPet(Pet pet) {
+        try {
+            cadastrarNome(pet);
+            cadastrarTipo(pet);
+            cadastrarSexo(pet);
+            cadastrarEndereco(pet);
+            cadastrarIdade(pet);
+            cadastrarPeso(pet);
+            cadastrarRaca(pet);
+            System.out.println("Animal " + pet.getNome() + " cadastrado com sucesso! ✅");
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Não foi possível cadastrar o animal");
+        }
     }
 
     public void cadastrarNome(Pet pet) {
@@ -114,3 +127,5 @@ public class PetController {
         }
     }
 }
+
+
