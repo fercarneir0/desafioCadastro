@@ -1,17 +1,19 @@
 package br.com.desafiocadastro.resource.files;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileMenu {
 
-    File file = new File("C:\\Users\\luis1\\IdeaProjects\\desafioCadastro\\src\\main\\java\\br\\com\\desafiocadastro\\resource\\formulario.txt");
-
     public List<String> lerArquivo() {
         List<String> linhaDoArquivo = new ArrayList<>();
 
-        try (FileReader fr = new FileReader(file); BufferedReader bfr = new BufferedReader(fr)) {
+        String caminhoAbsoluto = "br/com/desafiocadastro/resource/formulario.txt";
+        InputStream is = getClass().getClassLoader().getResourceAsStream(caminhoAbsoluto);
+
+        try (BufferedReader bfr = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
             String linha;
             while ((linha = bfr.readLine()) != null) {
                 linhaDoArquivo.add(linha);
