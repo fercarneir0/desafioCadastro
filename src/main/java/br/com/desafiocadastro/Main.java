@@ -4,16 +4,16 @@ import br.com.desafiocadastro.controller.PetController;
 import br.com.desafiocadastro.domain.model.Pet;
 import br.com.desafiocadastro.resource.files.FileMenu;
 import br.com.desafiocadastro.view.ConsoleInput;
+import br.com.desafiocadastro.view.MenuInicial;
 
+import java.awt.*;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Pet pet = new Pet();
-        PetController controller = new PetController();
-
-
-        controller.cadastrarPet(pet);
-        controller.gerarArquivo(pet);
+        MenuInicial menu = new MenuInicial();
+        System.out.println("Bem-vindo ao sistema PetLovers");
+        System.out.println("O que desejas fazer? Estamos aqui para te ajudar");
+        menu.menu();
     }
 }

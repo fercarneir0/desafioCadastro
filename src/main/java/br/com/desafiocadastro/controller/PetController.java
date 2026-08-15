@@ -27,6 +27,8 @@ public class PetController {
             cadastrarIdade(pet);
             cadastrarPeso(pet);
             cadastrarRaca(pet);
+
+            gerarArquivo(pet);
         } catch (RuntimeException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
