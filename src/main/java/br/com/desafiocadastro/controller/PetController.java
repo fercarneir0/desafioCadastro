@@ -4,68 +4,128 @@ import br.com.desafiocadastro.domain.enums.SexoAnimal;
 import br.com.desafiocadastro.domain.enums.TipoAnimal;
 import br.com.desafiocadastro.domain.model.Pet;
 import br.com.desafiocadastro.resource.files.FileMenu;
+import br.com.desafiocadastro.view.ConsoleInput;
 
-import java.util.Scanner;
 
 public class PetController {
+    FileMenu file = new FileMenu();
+    ConsoleInput input = new ConsoleInput();
 
-
-    public void cadastrarPet() {
-        FileMenu file = new FileMenu();
-        Scanner scan = new Scanner(System.in);
-        Pet pet = new Pet();
-
-        System.out.println("------ PREENCHA AS INFORMACOES DO PET -----------");
-        System.out.println(file.pegarLinhas(0));
-        String nome = scan.nextLine();
-        pet.setNome(nome);
-        System.out.println(nome);
-
-        System.out.println(file.pegarLinhas(1));
-        System.out.println("ESCOLHA 1-CACHORRO 2-GATO");
-        int codigoTipoAnimal = scan.nextInt();
+    public void cadastrarPet(Pet pet) {
         try {
-            TipoAnimal tipo = TipoAnimal.getTipoPorCodigo(codigoTipoAnimal);
-        } catch (IllegalArgumentException e) {
+            cadastrarNome(pet);
+            cadastrarTipo(pet);
+            cadastrarSexo(pet);
+            cadastrarEndereco(pet);
+            cadastrarIdade(pet);
+            cadastrarPeso(pet);
+            cadastrarRaca(pet);
+            System.out.println("Animal " + pet.getNome() + " cadastrado com sucesso! ✅");
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
-            System.out.print("Por favor, tente novamente!");
+            System.out.println("Não foi possível cadastrar o animal");
         }
+    }
 
-        System.out.println(file.pegarLinhas(2));
-        System.out.println("ESCOLHA 1-MACHO 2-FEMEA");
-        int codigoSexo = scan.nextInt();
-        try {
-            SexoAnimal sexo = SexoAnimal.getTipoPorCodigo(codigoSexo);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            System.out.print("Por favor, tente novamente!");
+    public void cadastrarNome(Pet pet) {
+        String nomeDigitado = input.lerString(file.pegarLinhas(0));
+
+        while (true) {
+            try {
+                pet.setNome(nomeDigitado);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Por favor tente novamente\n");
+            }
         }
+    }
 
-        System.out.println(file.pegarLinhas(3));
-        String endereco = scan.next();
-        scan.nextLine();
-        pet.setEndereco(endereco);
+    public void cadastrarTipo(Pet pet) {
+        while (true) {
+            int codigoDigitado = input.lerInt(file.pegarLinhas(1));
 
-        System.out.println(file.pegarLinhas(4));
-        double idade = scan.nextDouble();
-        try {
-            pet.setIdade(idade);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            System.out.print("Por favor, tente novamente!");
+            try {
+                TipoAnimal animalEscolhido = TipoAnimal.getTipoPorCodigo(codigoDigitado);
+                pet.setTipoAnimal(animalEscolhido);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Por favor, tente novamente");
+            }
         }
+    }
 
-        System.out.println(file.pegarLinhas(5));
-        double peso = scan.nextDouble();
-        try{
-            pet.setPeso(peso);
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            System.out.println("Por favor, tente novamente!");
+    public void cadastrarSexo(Pet pet) {
+        while (true) {
+            int codigoDigitado = input.lerInt(file.pegarLinhas(2));
+
+            try {
+                SexoAnimal sexoEscolhido = SexoAnimal.getTipoPorCodigo(codigoDigitado);
+                pet.setSexoAnimal(sexoEscolhido);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Por favor, tente novamente");
+            }
         }
+    }
 
-        System.out.println(file.pegarLinhas(6));
-        String raca = scan.nextLine();
-        pet.setRaca(raca);
+    public void cadastrarEndereco(Pet pet) {
+        while (true) {
+            String enderecoDigitado = input.lerEndereco(file.pegarLinhas(3));
+
+            try {
+                pet.setEndereco(enderecoDigitado);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Por favor, tente novamente");
+            }
+        }
+    }
+
+    public void cadastrarIdade(Pet pet) {
+        while (true) {
+            double idadeDigitada = input.lerDouble(file.pegarLinhas(4));
+
+            try {
+                pet.setIdade(idadeDigitada);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Por favor, tente novamente");
+            }
+        }
+    }
+
+    public void cadastrarPeso(Pet pet) {
+        while (true) {
+            double pesoDigitado = input.lerDouble(file.pegarLinhas(5));
+
+            try {
+                pet.setPeso(pesoDigitado);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Por favor, tente novamente");
+            }
+        }
+    }
+
+    public void cadastrarRaca(Pet pet) {
+        while (true) {
+            String racaDigitada = input.lerString(file.pegarLinhas(6));
+
+            try {
+                pet.setRaca(racaDigitada);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Por favor, tente novamente");
+            }
+        }
     }
 }
+
+
