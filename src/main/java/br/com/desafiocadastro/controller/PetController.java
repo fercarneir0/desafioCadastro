@@ -27,7 +27,6 @@ public class PetController {
             cadastrarIdade(pet);
             cadastrarPeso(pet);
             cadastrarRaca(pet);
-            System.out.println("Animal " + pet.getNome() + " cadastrado com sucesso! ✅");
         } catch (RuntimeException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
@@ -143,6 +142,10 @@ public class PetController {
         String caminhoPasta = "C:\\Users\\Emilly\\Desktop\\fernando\\desafioCadastro\\src\\petsCadastrados";
         String nomeArquivo = dataFormatada + "-" + pet.getNome();
 
+        if(pet.getNome() == null){
+            System.out.println("Erro: Pet inválido ou sem nome. Por favor, tente novamente!");
+            return;
+        }
 
         File pasta = new File(caminhoPasta);
         if (!pasta.exists()) {
@@ -165,7 +168,7 @@ public class PetController {
             bw.write("6 - "+ pet.getPeso());
             bw.newLine();
             bw.write("7 - " + pet.getRaca());
-
+            System.out.println("Animal " + pet.getNome() + " cadastrado com sucesso! ✅");
         } catch (IOException e){
             System.out.println("Erro ao gerar o arquivo: " + e.getMessage());
         }
