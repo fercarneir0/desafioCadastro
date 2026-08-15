@@ -6,6 +6,13 @@ import br.com.desafiocadastro.domain.model.Pet;
 import br.com.desafiocadastro.resource.files.FileMenu;
 import br.com.desafiocadastro.view.ConsoleInput;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 public class PetController {
     FileMenu file = new FileMenu();
@@ -22,6 +29,7 @@ public class PetController {
             cadastrarRaca(pet);
             System.out.println("Animal " + pet.getNome() + " cadastrado com sucesso! ✅");
         } catch (RuntimeException e) {
+            e.printStackTrace();
             System.out.println(e.getMessage());
             System.out.println("Não foi possível cadastrar o animal");
         }
@@ -124,6 +132,42 @@ public class PetController {
                 System.out.println(e.getMessage());
                 System.out.println("Por favor, tente novamente");
             }
+        }
+    }
+
+    public void gerarArquivo(Pet pet) {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd_Hhmm");
+
+        String dataFormatada = localDateTime.format(dateTimeFormatter);
+        String caminhoPasta = "C:\\Users\\Emilly\\Desktop\\fernando\\desafioCadastro\\src\\petsCadastrados";
+        String nomeArquivo = dataFormatada + "-" + pet.getNome();
+
+
+        File pasta = new File(caminhoPasta);
+        if (!pasta.exists()) {
+            pasta.mkdirs();
+        }
+
+        File arquivo = new File(pasta, nomeArquivo);
+
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(arquivo))){
+            bw.write("1 - " + pet.getNome());
+            bw.newLine();
+            bw.write("2 - " + pet.getTipoAnimal());
+            bw.newLine();
+            bw.write("3 - " + pet.getSexoAnimal());
+            bw.newLine();
+            bw.write("4 - " + pet.getEndereco());
+            bw.newLine();
+            bw.write("5 - " + pet.getIdade());
+            bw.newLine();
+            bw.write("6 - "+ pet.getPeso());
+            bw.newLine();
+            bw.write("7 - " + pet.getRaca());
+
+        } catch (IOException e){
+            System.out.println("Erro ao gerar o arquivo: " + e.getMessage());
         }
     }
 }

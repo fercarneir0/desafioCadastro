@@ -13,5 +13,6 @@ public class Main {
         PetController controller = new PetController();
 
         controller.cadastrarPet(pet);
+        controller.gerarArquivo(pet);
     }
 }
