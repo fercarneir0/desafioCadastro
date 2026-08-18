@@ -206,6 +206,17 @@ public class PetController {
         }
         return encontrados;
     }
+
+    public List<Pet> listaPorTipo(int codigoEspecie){
+        List<Pet> encontrados = new ArrayList<>();
+        TipoAnimal tipoAnimal = TipoAnimal.getTipoPorCodigo(codigoEspecie);
+        for (Pet pet : pets) {
+            if(pet.getTipoAnimal() == tipoAnimal){
+                encontrados.add(pet);
+            }
+        }
+        return encontrados;
+    }
 }
 
 
