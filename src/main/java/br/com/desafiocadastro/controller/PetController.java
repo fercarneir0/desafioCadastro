@@ -217,6 +217,17 @@ public class PetController {
         }
         return encontrados;
     }
+
+    public List<Pet> listaPorSexo(int codigoSexo){
+        List<Pet> encontrados = new ArrayList<>();
+        SexoAnimal sexoAnimal = SexoAnimal.getTipoPorCodigo(codigoSexo);
+        for (Pet pet : pets) {
+            if(pet.getSexoAnimal() == sexoAnimal){
+                encontrados.add(pet);
+            }
+        }
+        return encontrados;
+    }
 }
 
 
