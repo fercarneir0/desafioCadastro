@@ -195,6 +195,17 @@ public class PetController {
 
         }
     }
+
+    public List<Pet> listarPorNome(String nome){
+        List<Pet> encontrados = new ArrayList<>();
+
+        for (Pet pet : pets) {
+            if(pet.getNome().equalsIgnoreCase(nome)){
+                encontrados.add(pet);
+            }
+        }
+        return encontrados;
+    }
 }
 
 
