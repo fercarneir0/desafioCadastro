@@ -3,6 +3,7 @@ package br.com.desafiocadastro.view;
 import br.com.desafiocadastro.controller.PetController;
 import br.com.desafiocadastro.domain.model.Pet;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class MenuInicial {
@@ -25,6 +26,15 @@ public class MenuInicial {
                 case 1:
                     Pet novoPet = new Pet();
                     controller.cadastrarPet(novoPet);
+                    break;
+                case 2:
+                    System.out.println("alterar dados");
+                    break;
+                case 3:
+                    System.out.println("deletar pet");
+                    break;
+                case 4:
+                    controller.listarPets();
                     break;
                 default:
                     System.out.println("Escolha uma opção válida");

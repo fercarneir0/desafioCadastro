@@ -12,8 +12,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         MenuInicial menu = new MenuInicial();
+        PetController controller = new PetController();
         System.out.println("Bem-vindo ao sistema PetLovers");
         System.out.println("O que desejas fazer? Estamos aqui para te ajudar");
+
         menu.menu();
     }
 }

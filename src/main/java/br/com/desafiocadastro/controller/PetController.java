@@ -12,11 +12,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class PetController {
+    private List<Pet> pets = new ArrayList<>();
     FileMenu file = new FileMenu();
     ConsoleInput input = new ConsoleInput();
+
 
     public void cadastrarPet(Pet pet) {
         try {
@@ -28,6 +32,7 @@ public class PetController {
             cadastrarPeso(pet);
             cadastrarRaca(pet);
 
+            pets.add(pet);
             gerarArquivo(pet);
         } catch (RuntimeException e) {
             e.printStackTrace();
@@ -141,10 +146,10 @@ public class PetController {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd_Hhmm");
 
         String dataFormatada = localDateTime.format(dateTimeFormatter);
-        String caminhoPasta = "C:\\Users\\Emilly\\Desktop\\fernando\\desafioCadastro\\src\\petsCadastrados";
+        String caminhoPasta = "src\\petsCadastrados";
         String nomeArquivo = dataFormatada + "-" + pet.getNome();
 
-        if(pet.getNome() == null){
+        if (pet.getNome() == null) {
             System.out.println("Erro: Pet inválido ou sem nome. Por favor, tente novamente!");
             return;
         }
@@ -156,7 +161,7 @@ public class PetController {
 
         File arquivo = new File(pasta, nomeArquivo);
 
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(arquivo))){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(arquivo))) {
             bw.write("1 - " + pet.getNome());
             bw.newLine();
             bw.write("2 - " + pet.getTipoAnimal());
@@ -167,12 +172,27 @@ public class PetController {
             bw.newLine();
             bw.write("5 - " + pet.getIdade());
             bw.newLine();
-            bw.write("6 - "+ pet.getPeso());
+            bw.write("6 - " + pet.getPeso());
             bw.newLine();
             bw.write("7 - " + pet.getRaca());
             System.out.println("Animal " + pet.getNome() + " cadastrado com sucesso! ✅");
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Erro ao gerar o arquivo: " + e.getMessage());
+        }
+    }
+
+    public void listarPets() {
+
+        if(pets.isEmpty()){
+            System.out.println("Não foi encontrado nenhum animal");
+            return;
+        }
+
+        int i = 0;
+        for (Pet pet : pets) {
+            i++;
+            System.out.println(i + " - " + pet.getNome());
+
         }
     }
 }
