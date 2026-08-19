@@ -218,7 +218,19 @@ public class PetController {
                 case 2:
                     System.out.println("Selecione o tipo que deseja procurar:\n " + "1 - Cachorro/ 2 - Gato");
                     int tipoAnimal = scan.nextInt();
-                    listaPorTipo(tipoAnimal);
+
+                    List<String> encotrados = listaPorTipo(tipoAnimal);
+                    if(encotrados.isEmpty()) {
+                        System.out.println("Nenhum animal foi encontrado.");
+                    } else {
+                        System.out.println("\nAnimais encontrados:");
+                        int i = 0;
+                        for (Pet pet : pets) {
+                            System.out.println("[" + i + "]" + " - " + pet.getNome());
+                            i++;
+                        }
+                        System.out.println("--------------------------------------");
+                    }
                     break;
                 case 3:
                     System.out.println("Selecione o sexo que deseja procurar:\n " + "1 - Macho / 2 - Fêmea");
@@ -246,23 +258,23 @@ public class PetController {
         return encontrados;
     }
 
-    public List<Pet> listaPorTipo(int codigoEspecie) {
-        List<Pet> encontrados = new ArrayList<>();
+    public List<String> listaPorTipo(int codigoEspecie) {
+        List<String> encontrados = new ArrayList<>();
         TipoAnimal tipoAnimal = TipoAnimal.getTipoPorCodigo(codigoEspecie);
         for (Pet pet : pets) {
             if (pet.getTipoAnimal() == tipoAnimal) {
-                encontrados.add(pet);
+                encontrados.add(pet.getNome());
             }
         }
         return encontrados;
     }
 
-    public List<Pet> listaPorSexo(int codigoSexo) {
-        List<Pet> encontrados = new ArrayList<>();
+    public List<String> listaPorSexo(int codigoSexo) {
+        List<String> encontrados = new ArrayList<>();
         SexoAnimal sexoAnimal = SexoAnimal.getTipoPorCodigo(codigoSexo);
         for (Pet pet : pets) {
             if (pet.getSexoAnimal() == sexoAnimal) {
-                encontrados.add(pet);
+                encontrados.add(pet.getNome());
             }
         }
         return encontrados;
