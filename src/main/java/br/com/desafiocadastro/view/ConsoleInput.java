@@ -49,7 +49,6 @@ public class ConsoleInput {
                 System.out.println("Digite a rua: ");
                 String rua = scan.nextLine();
                 String enderecoCompleto = rua + ", " + cidade + " N." + numeroCasa;
-                System.out.println("Endereco " + enderecoCompleto + " cadastrado com sucesso");
                 return enderecoCompleto;
             } catch (IllegalArgumentException e){
                 System.out.println("Erro: por favor digite apenas letras, números e pontuação");
