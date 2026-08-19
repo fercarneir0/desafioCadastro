@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class PetController {
@@ -183,7 +184,7 @@ public class PetController {
 
     public void listarPets() {
 
-        if(pets.isEmpty()){
+        if (pets.isEmpty()) {
             System.out.println("Não foi encontrado nenhum animal");
             return;
         }
@@ -191,38 +192,76 @@ public class PetController {
         int i = 0;
         for (Pet pet : pets) {
             i++;
-            System.out.println(i + " - " + pet.getNome());
+            System.out.println("[" + i + "]"+ " - " + pet.getNome());
 
         }
     }
 
-    public List<Pet> listarPorNome(String nome){
+    public void listaEspecifica() {
+        Scanner scan = new Scanner(System.in);
+        String mensagem = "Escolha uma opção para listar\n" +
+                "1. Listar por nome\n" +
+                "2. Listar por tipo do animal\n" +
+                "3. Listar por sexo do animal\n"+
+                "4. Sair\n";
+        int escolha = 0;
+        while (escolha != 4) {
+            System.out.println(mensagem);
+            escolha = scan.nextInt();
+            switch (escolha) {
+                case 1:
+                    System.out.println("Digite o nome que deseja buscar");
+                    scan.nextLine();
+                    String nome = scan.nextLine();
+                    listarPorNome(nome);
+                    break;
+                case 2:
+                    System.out.println("Selecione o tipo que deseja procurar:\n " + "1 - Cachorro/ 2 - Gato");
+                    int tipoAnimal = scan.nextInt();
+                    listaPorTipo(tipoAnimal);
+                    break;
+                case 3:
+                    System.out.println("Selecione o sexo que deseja procurar:\n " + "1 - Macho / 2 - Fêmea");
+                    int sexoAnimal = scan.nextInt();
+                    listaPorSexo(sexoAnimal);
+                    break;
+                case 4:
+                    System.out.println("Voltando ao menu principal...");
+                    break;
+                default:
+                    System.out.println("Selecione uma opção válida");
+                    break;
+            }
+        }
+    }
+
+    public List<Pet> listarPorNome(String nome) {
         List<Pet> encontrados = new ArrayList<>();
 
         for (Pet pet : pets) {
-            if(pet.getNome().equalsIgnoreCase(nome)){
+            if (pet.getNome().equalsIgnoreCase(nome)) {
                 encontrados.add(pet);
             }
         }
         return encontrados;
     }
 
-    public List<Pet> listaPorTipo(int codigoEspecie){
+    public List<Pet> listaPorTipo(int codigoEspecie) {
         List<Pet> encontrados = new ArrayList<>();
         TipoAnimal tipoAnimal = TipoAnimal.getTipoPorCodigo(codigoEspecie);
         for (Pet pet : pets) {
-            if(pet.getTipoAnimal() == tipoAnimal){
+            if (pet.getTipoAnimal() == tipoAnimal) {
                 encontrados.add(pet);
             }
         }
         return encontrados;
     }
 
-    public List<Pet> listaPorSexo(int codigoSexo){
+    public List<Pet> listaPorSexo(int codigoSexo) {
         List<Pet> encontrados = new ArrayList<>();
         SexoAnimal sexoAnimal = SexoAnimal.getTipoPorCodigo(codigoSexo);
         for (Pet pet : pets) {
-            if(pet.getSexoAnimal() == sexoAnimal){
+            if (pet.getSexoAnimal() == sexoAnimal) {
                 encontrados.add(pet);
             }
         }

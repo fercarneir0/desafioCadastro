@@ -37,7 +37,8 @@ public class MenuInicial {
                     controller.listarPets();
                     break;
                 case 5:
-
+                    controller.listaEspecifica();
+                    break;
                 default:
                     System.out.println("Escolha uma opção válida");
                     break;
