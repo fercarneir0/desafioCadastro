@@ -213,7 +213,19 @@ public class PetController {
                     System.out.println("Digite o nome que deseja buscar");
                     scan.nextLine();
                     String nome = scan.nextLine();
-                    listarPorNome(nome);
+                    List<Pet> encontrados = listarPorNome(nome);
+
+                    if(encontrados.isEmpty()){
+                        System.out.println("Nenhum animal com esse nome foi encontrado");
+                    } else {
+                        System.out.println("\nAnimais encontrados:");
+                        int i = 0;
+                        for (Pet pet : pets) {
+                            i++;
+                            System.out.println("[" + i + "]"+ " - " + pet.getNome());
+                        }
+                        System.out.println("--------------------------------------");
+                    }
                     break;
                 case 2:
                     System.out.println("Selecione o tipo que deseja procurar:\n " + "1 - Cachorro/ 2 - Gato");
@@ -226,8 +238,8 @@ public class PetController {
                         System.out.println("\nAnimais encontrados:");
                         int i = 0;
                         for (Pet pet : pets) {
-                            System.out.println("[" + i + "]" + " - " + pet.getNome());
                             i++;
+                            System.out.println("[" + i + "]" + " - " + pet.getNome());
                         }
                         System.out.println("--------------------------------------");
                     }

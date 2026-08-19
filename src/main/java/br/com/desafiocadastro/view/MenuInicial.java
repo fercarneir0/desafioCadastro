@@ -39,6 +39,9 @@ public class MenuInicial {
                 case 5:
                     controller.listaEspecifica();
                     break;
+                case 6:
+                    System.out.println("Finalizando o programa! :D");
+                    break;
                 default:
                     System.out.println("Escolha uma opção válida");
                     break;
