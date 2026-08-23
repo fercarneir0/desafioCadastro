@@ -267,7 +267,80 @@ public class PetController {
                     }
                     break;
                 case 4:
-                    System.out.println("Voltando ao menu principal...");
+                    System.out.println("Digite a idade que deseja procurar: ");
+                    double idade = scan.nextDouble();
+
+                    Predicate<Pet> idadeFiltrada = filtroIdadeAnimal(idade);
+                    List<Pet> petIdade = filtrarPets(idadeFiltrada);
+
+                    if(petIdade.isEmpty()){
+                        System.out.println("\nNenhum animal foi encontrado");
+                    } else {
+                        System.out.println("Animais encontrados");
+                        int i = 0;
+                        for (Pet pet : pets) {
+                            i++;
+                            System.out.println(i + ". " + pet.getNome());
+                        }
+                        System.out.println("-------------------------------------");
+                    }
+                    break;
+                case 5:
+                    System.out.println("Digite o peso que deseja procurar: ");
+                    double peso = scan.nextDouble();
+
+                    Predicate<Pet> pesoFiltrado = filtroPesoAnimal(peso);
+                    List<Pet> petPeso = filtrarPets(pesoFiltrado);
+
+                    if(petPeso.isEmpty()){
+                        System.out.println("\nNenhum animal foi encontrado");
+                    } else {
+                        System.out.println("Animais encontrados: ");
+                        int i = 0;
+                        for (Pet pet : pets) {
+                            i++;
+                            System.out.println(i + ". " + pet.getNome());
+                        }
+                        System.out.println("-------------------------------------");
+                    }
+                    break;
+                case 6:
+                    System.out.println("Digite qual raça deseja procurar: ");
+                    scan.nextLine();
+                    String raca = scan.nextLine();
+
+                    Predicate<Pet> racaFiltrada = filtroRacaAnimal(raca);
+                    List<Pet> petRaca = filtrarPets(racaFiltrada);
+
+                    if(petRaca.isEmpty()){
+                        System.out.println("\nNenhum animal foi encontrado");
+                    } else {
+                        System.out.println("Animais encontrados: ");
+                        int i = 0;
+                        for (Pet pet : pets) {
+                            System.out.println(i + ". " + pet.getNome());
+                        }
+                        System.out.println("-------------------------------------");
+                    }
+                    break;
+                case 7:
+                    System.out.println("Digite o endereço que deseja procurar: ");
+                    scan.nextLine();
+                    String endereco = scan.nextLine();
+
+                    Predicate<Pet> enderecoFiltrado = filtroEnderecoAnimal(endereco);
+                    List<Pet> petEndereco = filtrarPets(enderecoFiltrado);
+
+                    if(petEndereco.isEmpty()){
+                        System.out.println("\nNenhum animal foi encontrado");
+                    } else {
+                        System.out.println("Animais encontrados: ");
+                        int i = 0;
+                        for (Pet pet : pets) {
+                            System.out.println(i + ". " + pet.getNome());
+                        }
+                        System.out.println("-------------------------------------");
+                    }
                     break;
                 default:
                     System.out.println("Selecione uma opção válida");
