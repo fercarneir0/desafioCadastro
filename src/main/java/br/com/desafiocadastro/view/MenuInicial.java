@@ -3,6 +3,7 @@ package br.com.desafiocadastro.view;
 import br.com.desafiocadastro.controller.PetController;
 import br.com.desafiocadastro.domain.model.Pet;
 
+import java.awt.*;
 import java.sql.SQLOutput;
 import java.util.Scanner;
 
@@ -37,7 +38,8 @@ public class MenuInicial {
                     controller.listarPets();
                     break;
                 case 5:
-                    controller.listaEspecifica();
+                    MenuLista menuLista = new MenuLista();
+                    menuLista.menuListaAnimal();
                     break;
                 case 6:
                     System.out.println("Finalizando o programa! :D");
