@@ -290,6 +290,22 @@ public class PetController {
         return pet -> pet.getSexoAnimal() == sexoAnimal;
     }
 
+    public Predicate<Pet> filtroPesoAnimal(double peso){
+        return pet -> pet.getPeso() == peso;
+    }
+
+    public Predicate<Pet> filtroIdadeAnimal(double idade){
+        return pet -> pet.getIdade() == idade;
+    }
+
+    public Predicate<Pet> filtroRacaAnimal(String raca){
+        return pet -> pet.getRaca().equalsIgnoreCase(raca);
+    }
+
+    public Predicate<Pet> filtroEnderecoAnimal(String endereco){
+        return pet -> pet.getEndereco().equalsIgnoreCase(endereco);
+    }
+
     public List<Pet> filtrarPets(Predicate<Pet> filtro){
         List<Pet> encontrados = new ArrayList<>();
         for (Pet pet : pets) {
