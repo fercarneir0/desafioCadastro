@@ -272,41 +272,51 @@ public class PetController {
         }
     }
 
-    public List<Pet> listarPorNome(String nome) {
-        List<Pet> encontrados = new ArrayList<>();
-
-        for (Pet pet : pets) {
-            if (pet.getNome().equalsIgnoreCase(nome)) {
-                encontrados.add(pet);
-            }
-        }
-        return encontrados;
-    }
-
-    public List<Pet> listaPorTipo(int codigoEspecie) {
-        List<Pet> encontrados = new ArrayList<>();
-        TipoAnimal tipoAnimal = TipoAnimal.getTipoPorCodigo(codigoEspecie);
-        for (Pet pet : pets) {
-            if (pet.getTipoAnimal() == tipoAnimal) {
-                encontrados.add(pet);
-            }
-        }
-        return encontrados;
-    }
-
-    public List<Pet> listaPorSexo(int codigoSexo) {
-        List<Pet> encontrados = new ArrayList<>();
-        SexoAnimal sexoAnimal = SexoAnimal.getTipoPorCodigo(codigoSexo);
-        for (Pet pet : pets) {
-            if (pet.getSexoAnimal() == sexoAnimal) {
-                encontrados.add(pet);
-            }
-        }
-        return encontrados;
-    }
+//    public List<Pet> listarPorNome(String nome) {
+//        List<Pet> encontrados = new ArrayList<>();
+//
+//        for (Pet pet : pets) {
+//            if (pet.getNome().equalsIgnoreCase(nome)) {
+//                encontrados.add(pet);
+//            }
+//        }
+//        return encontrados;
+//    }
+//
+//    public List<Pet> listaPorTipo(int codigoEspecie) {
+//        List<Pet> encontrados = new ArrayList<>();
+//        TipoAnimal tipoAnimal = TipoAnimal.getTipoPorCodigo(codigoEspecie);
+//        for (Pet pet : pets) {
+//            if (pet.getTipoAnimal() == tipoAnimal) {
+//                encontrados.add(pet);
+//            }
+//        }
+//        return encontrados;
+//    }
+//
+//    public List<Pet> listaPorSexo(int codigoSexo) {
+//        List<Pet> encontrados = new ArrayList<>();
+//        SexoAnimal sexoAnimal = SexoAnimal.getTipoPorCodigo(codigoSexo);
+//        for (Pet pet : pets) {
+//            if (pet.getSexoAnimal() == sexoAnimal) {
+//                encontrados.add(pet);
+//            }
+//        }
+//        return encontrados;
+//    }
 
     public Predicate<Pet> filtroNome(String nome){
         return pet -> pet.getNome().equalsIgnoreCase(nome);
+    }
+
+    public Predicate<Pet> filtroTipoAnimal(int codigoEspecie){
+        TipoAnimal tipoAnimal = TipoAnimal.getTipoPorCodigo(codigoEspecie);
+        return pet -> pet.getTipoAnimal() == tipoAnimal;
+    }
+
+    public Predicate<Pet> filtroSexoAnimal(int codigoSexo){
+        SexoAnimal sexoAnimal = SexoAnimal.getTipoPorCodigo(codigoSexo);
+        return pet -> pet.getSexoAnimal() == sexoAnimal;
     }
 
     public List<Pet> filtrarPets(Predicate<Pet> filtro){
