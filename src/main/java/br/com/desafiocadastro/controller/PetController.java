@@ -214,7 +214,8 @@ public class PetController {
                     System.out.println("Digite o nome que deseja buscar");
                     scan.nextLine();
                     String nome = scan.nextLine();
-                    List<Pet> petNomes = listarPorNome(nome);
+                    Predicate<Pet> nomeFiltrado = filtroNome(nome);
+                    List<Pet> petNomes = filtrarPets(nomeFiltrado);
 
                     if(petNomes.isEmpty()){
                         System.out.println("Nenhum animal com esse nome foi encontrado");
@@ -232,7 +233,8 @@ public class PetController {
                     System.out.println("Selecione o tipo que deseja procurar:\n " + "1 - Cachorro/ 2 - Gato");
                     int tipoAnimal = scan.nextInt();
 
-                    List<Pet> petTipo = listaPorTipo(tipoAnimal);
+                    Predicate<Pet> tipoAnimalFiltrado = filtroTipoAnimal(tipoAnimal);
+                    List<Pet> petTipo = filtrarPets(tipoAnimalFiltrado);
                     if(petTipo.isEmpty()) {
                         System.out.println("Nenhum animal foi encontrado.");
                     } else {
@@ -248,7 +250,9 @@ public class PetController {
                 case 3:
                     System.out.println("Selecione o sexo que deseja procurar:\n " + "1 - Macho / 2 - Fêmea");
                     int sexoAnimal = scan.nextInt();
-                    List<Pet> petSexo = listaPorSexo(sexoAnimal);
+
+                    Predicate<Pet> tipoSexoAnimalFiltrado = filtroSexoAnimal(sexoAnimal);
+                    List<Pet> petSexo = filtrarPets(tipoSexoAnimalFiltrado);
 
                     if(petSexo.isEmpty()){
                         System.out.println("\nNenhum animal foi encontrado");
@@ -271,39 +275,6 @@ public class PetController {
             }
         }
     }
-
-//    public List<Pet> listarPorNome(String nome) {
-//        List<Pet> encontrados = new ArrayList<>();
-//
-//        for (Pet pet : pets) {
-//            if (pet.getNome().equalsIgnoreCase(nome)) {
-//                encontrados.add(pet);
-//            }
-//        }
-//        return encontrados;
-//    }
-//
-//    public List<Pet> listaPorTipo(int codigoEspecie) {
-//        List<Pet> encontrados = new ArrayList<>();
-//        TipoAnimal tipoAnimal = TipoAnimal.getTipoPorCodigo(codigoEspecie);
-//        for (Pet pet : pets) {
-//            if (pet.getTipoAnimal() == tipoAnimal) {
-//                encontrados.add(pet);
-//            }
-//        }
-//        return encontrados;
-//    }
-//
-//    public List<Pet> listaPorSexo(int codigoSexo) {
-//        List<Pet> encontrados = new ArrayList<>();
-//        SexoAnimal sexoAnimal = SexoAnimal.getTipoPorCodigo(codigoSexo);
-//        for (Pet pet : pets) {
-//            if (pet.getSexoAnimal() == sexoAnimal) {
-//                encontrados.add(pet);
-//            }
-//        }
-//        return encontrados;
-//    }
 
     public Predicate<Pet> filtroNome(String nome){
         return pet -> pet.getNome().equalsIgnoreCase(nome);
