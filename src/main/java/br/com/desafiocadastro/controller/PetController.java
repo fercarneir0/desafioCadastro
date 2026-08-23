@@ -308,6 +308,16 @@ public class PetController {
     public Predicate<Pet> filtroNome(String nome){
         return pet -> pet.getNome().equalsIgnoreCase(nome);
     }
+
+    public List<Pet> filtrarPets(Predicate<Pet> filtro){
+        List<Pet> encontrados = new ArrayList<>();
+        for (Pet pet : pets) {
+            if(filtro.test(pet)){
+                encontrados.add(pet);
+            }
+        }
+        return encontrados;
+    }
 }
 
 
