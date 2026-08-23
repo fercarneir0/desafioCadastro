@@ -199,7 +199,9 @@ public class PetController {
     }
 
     public Predicate<Pet> filtroNome(String nome){
-        return pet -> pet.getNome().equalsIgnoreCase(nome);
+        return pet -> pet.getNome()
+                .toLowerCase()
+                .contains(nome.toLowerCase());
     }
 
     public Predicate<Pet> filtroTipoAnimal(int codigoEspecie){
@@ -221,11 +223,15 @@ public class PetController {
     }
 
     public Predicate<Pet> filtroRacaAnimal(String raca){
-        return pet -> pet.getRaca().equalsIgnoreCase(raca);
+        return pet -> pet.getRaca()
+                .toLowerCase()
+                .contains(raca.toLowerCase());
     }
 
     public Predicate<Pet> filtroEnderecoAnimal(String endereco){
-        return pet -> pet.getEndereco().equalsIgnoreCase(endereco);
+        return pet -> pet.getEndereco()
+                .toLowerCase()
+                .contains(endereco.toLowerCase());
     }
 
     public List<Pet> filtrarPets(Predicate<Pet> filtro){
