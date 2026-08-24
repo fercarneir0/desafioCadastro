@@ -38,8 +38,23 @@ public class MenuInicial {
                     controller.listarPets();
                     break;
                 case 5:
-                    MenuLista menuLista = new MenuLista();
-                    menuLista.menuListaAnimal();
+                    MenuLista menuLista = new MenuLista(controller);
+                    String mensagem = ("Selecione quantos critérios deseja para fazer a listagem: \n" +
+                            "1 - Um critério\n" +
+                            "2 - Dois critérios\n");
+                    System.out.println(mensagem);
+                    int subEscolha = scan.nextInt();
+                    switch (subEscolha) {
+                        case 1:
+                            menuLista.menuListaUmCriterio();
+                            break;
+                        case 2:
+                            menuLista.menuListaDoisCriterios();
+                            break;
+                        default:
+                            System.out.println("Escolha uma opção válida!");
+                            break;
+                    }
                     break;
                 case 6:
                     System.out.println("Finalizando o programa! :D");

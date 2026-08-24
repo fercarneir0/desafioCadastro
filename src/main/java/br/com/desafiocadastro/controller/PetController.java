@@ -36,6 +36,8 @@ public class PetController {
 
             pets.add(pet);
             gerarArquivo(pet);
+
+            System.out.println("Pets cadastrados : " + pets.size());
         } catch (RuntimeException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
@@ -236,7 +238,9 @@ public class PetController {
 
     public List<Pet> filtrarPets(Predicate<Pet> filtro){
         List<Pet> encontrados = new ArrayList<>();
+
         for (Pet pet : pets) {
+
             if(filtro.test(pet)){
                 encontrados.add(pet);
             }
