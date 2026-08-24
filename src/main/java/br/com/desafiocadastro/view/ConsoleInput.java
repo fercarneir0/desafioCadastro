@@ -7,8 +7,15 @@ public class ConsoleInput {
     Scanner scan = new Scanner(System.in);
 
     public String lerString(String mensagem) {
-        System.out.println(mensagem);
-        return scan.nextLine();
+        while(true){
+            System.out.println(mensagem);
+            try{
+                String valor = scan.nextLine();
+                return valor;
+            } catch (IllegalArgumentException e){
+                System.out.println("Erro: " +e.getMessage());
+            }
+        }
     }
 
     public double lerDouble(String mensagem){
@@ -17,9 +24,11 @@ public class ConsoleInput {
             try{
                 double valor = scan.nextDouble();
                 scan.nextLine();
+
                 return valor;
             } catch (InputMismatchException e){
                 System.out.println("Erro: Por favor digite apenas valores válidos!");
+                scan.nextLine();
             }
         }
     }
@@ -34,6 +43,7 @@ public class ConsoleInput {
                 return valor;
             } catch (InputMismatchException e){
                 System.out.println("Erro: por favor digite apenas valores válidos");
+                scan.nextLine();
             }
         }
     }
@@ -52,6 +62,7 @@ public class ConsoleInput {
                 return enderecoCompleto;
             } catch (IllegalArgumentException e){
                 System.out.println("Erro: por favor digite apenas letras, números e pontuação");
+                scan.nextLine();
             }
         }
     }

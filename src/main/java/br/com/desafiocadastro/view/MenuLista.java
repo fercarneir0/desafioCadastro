@@ -3,6 +3,7 @@ package br.com.desafiocadastro.view;
 import br.com.desafiocadastro.controller.PetController;
 import br.com.desafiocadastro.domain.model.Pet;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Predicate;
@@ -10,7 +11,7 @@ import java.util.function.Predicate;
 public class MenuLista {
     Scanner scan = new Scanner(System.in);
     PetController controller;
-
+    DecimalFormat df = new DecimalFormat("0.#");
     public MenuLista(PetController controller) {
         this.controller = controller;
     }
@@ -45,7 +46,7 @@ public class MenuLista {
                         for (Pet pet : petNomes) {
                             i++;
                             System.out.println(i + ". " + pet.getNome() + " - " + pet.getTipoAnimal() + " - " + pet.getSexoAnimal() + " - " + pet.getEndereco() +
-                                    " - " + (int) pet.getIdade() + " anos - " + pet.getRaca());
+                                    " - " + df.format(pet.getIdade()) + " anos - " + pet.getRaca());
                         }
                     }
                     break;
@@ -63,7 +64,7 @@ public class MenuLista {
                         for (Pet pet : petTipo) {
                             i++;
                             System.out.println(i + ". " + pet.getNome() + " - " + pet.getTipoAnimal() + " - " + pet.getSexoAnimal() + " - " + pet.getEndereco() +
-                                    " - " + (int) pet.getIdade() + " anos - " + pet.getRaca());
+                                    " - " + df.format(pet.getIdade()) + " anos - " + pet.getRaca());
                         }
                     }
                     break;
@@ -82,7 +83,7 @@ public class MenuLista {
                         for (Pet pet : petSexo) {
                             i++;
                             System.out.println(i + ". " + pet.getNome() + " - " + pet.getTipoAnimal() + " - " + pet.getSexoAnimal() + " - " + pet.getEndereco() +
-                                    " - " + (int) pet.getIdade() + " anos - " + pet.getRaca());
+                                    " - " + df.format(pet.getIdade()) + " anos - " + pet.getRaca());
                         }
                     }
                     break;
@@ -101,7 +102,7 @@ public class MenuLista {
                         for (Pet pet : petIdade) {
                             i++;
                             System.out.println(i + ". " + pet.getNome() + " - " + pet.getTipoAnimal() + " - " + pet.getSexoAnimal() + " - " + pet.getEndereco() +
-                                    " - " + (int) pet.getIdade() + " anos - " + pet.getRaca());
+                                    " - " + df.format(pet.getIdade()) + " anos - " + pet.getRaca());
                         }
                     }
                     break;
@@ -120,7 +121,7 @@ public class MenuLista {
                         for (Pet pet : petPeso) {
                             i++;
                             System.out.println(i + ". " + pet.getNome() + " - " + pet.getTipoAnimal() + " - " + pet.getSexoAnimal() + " - " + pet.getEndereco() +
-                                    " - " + (int) pet.getIdade() + " anos - " + pet.getRaca());
+                                    " - " + df.format(pet.getIdade()) + " anos - " + pet.getRaca());
                         }
                     }
                     break;
@@ -139,7 +140,7 @@ public class MenuLista {
                         int i = 0;
                         for (Pet pet : petRaca) {
                             System.out.println(i + ". " + pet.getNome() + " - " + pet.getTipoAnimal() + " - " + pet.getSexoAnimal() + " - " + pet.getEndereco() +
-                                    " - " + (int) pet.getIdade() + " anos - " + pet.getRaca());
+                                    " - " + df.format(pet.getIdade()) + " anos - " + pet.getRaca());
                         }
                     }
                     break;
@@ -158,7 +159,7 @@ public class MenuLista {
                         int i = 0;
                         for (Pet pet : petEndereco) {
                             System.out.println(i + ". " + pet.getNome() + " - " + pet.getTipoAnimal() + " - " + pet.getSexoAnimal() + " - " + pet.getEndereco() +
-                                    " - " + (int) pet.getIdade() + " anos - " + pet.getRaca());
+                                    " - " + df.format(pet.getIdade()) + " anos - " + pet.getRaca());
                         }
                     }
                     break;
@@ -210,7 +211,7 @@ public class MenuLista {
             for (Pet pet : encontrados) {
                 i++;
                 System.out.println(i + ". " + pet.getNome() + " - " + pet.getTipoAnimal() + " - " + pet.getSexoAnimal() + " - " + pet.getEndereco() +
-                        " - " + String.format("%.1f", pet.getIdade()) + " anos - " + pet.getRaca());
+                        " - " + df.format(pet.getIdade()) + " anos - " + pet.getRaca());
             }
         }
     }
