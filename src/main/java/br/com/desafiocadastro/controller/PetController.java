@@ -10,6 +10,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class PetController {
     private List<Pet> pets = new ArrayList<>();
     FileMenu file = new FileMenu();
     ConsoleInput input = new ConsoleInput();
+    DecimalFormat df = new DecimalFormat("0.#");
 
     public void cadastrarPet(Pet pet) {
         try {
@@ -283,7 +285,7 @@ public class PetController {
         for (Pet pet : pets) {
             i++;
             System.out.println(i + ". " + pet.getNome() + " - " + pet.getTipoAnimal() + " - " + pet.getSexoAnimal() + " - " + pet.getEndereco() +
-                    " - " + pet.getIdade() + " anos - " + pet.getRaca());
+                    " - " + df.format(pet.getIdade()) + " anos - " + pet.getRaca());
         }
     }
 
