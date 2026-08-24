@@ -2,7 +2,7 @@ package br.com.desafiocadastro.domain.enums;
 
 public enum TipoAnimal {
     CACHORRO(1),
-    FEMEA(2);
+    GATO(2);
 
     private int codigo;
 

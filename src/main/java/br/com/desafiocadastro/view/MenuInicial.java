@@ -3,6 +3,7 @@ package br.com.desafiocadastro.view;
 import br.com.desafiocadastro.controller.PetController;
 import br.com.desafiocadastro.domain.model.Pet;
 
+import java.awt.*;
 import java.sql.SQLOutput;
 import java.util.Scanner;
 
@@ -37,7 +38,23 @@ public class MenuInicial {
                     controller.listarPets();
                     break;
                 case 5:
-                    controller.listaEspecifica();
+                    MenuLista menuLista = new MenuLista(controller);
+                    String mensagem = ("Selecione quantos critérios deseja para fazer a listagem: \n" +
+                            "1 - Um critério\n" +
+                            "2 - Dois critérios\n");
+                    System.out.println(mensagem);
+                    int subEscolha = scan.nextInt();
+                    switch (subEscolha) {
+                        case 1:
+                            menuLista.menuListaUmCriterio();
+                            break;
+                        case 2:
+                            menuLista.menuListaDoisCriterios();
+                            break;
+                        default:
+                            System.out.println("Escolha uma opção válida!");
+                            break;
+                    }
                     break;
                 case 6:
                     System.out.println("Finalizando o programa! :D");
