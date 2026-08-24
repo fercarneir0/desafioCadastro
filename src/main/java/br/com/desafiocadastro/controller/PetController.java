@@ -46,13 +46,17 @@ public class PetController {
 
     public void removerPet(Pet pet) {
         try {
-            String mensagem = ("Selecione um dos pets para remover: ");
+            String mensagem = "Selecione um dos pets para remover: ";
             listarPets();
             int escolha = input.lerInt(mensagem);
-            int indice = escolha - 1;
 
-            pets.remove(indice);
-            System.out.println("Animal" +  pet.getNome() + " removido com  sucesso");
+            String mensagemConfirmacao = "Confirma a exclusão do animal?\n" +
+                    "1 - Sim / 2 - Não";
+            int escolhaConfirmacao = input.lerInt(mensagemConfirmacao);
+            if (escolhaConfirmacao == 1) {
+                pets.remove(escolha - 1);
+                System.out.println("Animal" + pet.getNome() + " removido com  sucesso!");
+            }
         } catch (IllegalArgumentException e) {
             System.out.println("Não foi possível remover o animal");
             System.out.println(e.getMessage());
