@@ -16,9 +16,10 @@ public class MenuInicial {
         PetController controller = new PetController();
         Scanner scan = new Scanner(System.in);
         Pet pet = new Pet();
-        String menu = "1. Cadastrar novo pet\n"
+        String menu = "---------------- MENU ----------------"
+                +"1. Cadastrar novo pet\n"
                 + "2. Alterar os dados do pet cadastrado\n"
-                + "3. Deletear um pet cadastrado\n"
+                + "3. Deletar um pet cadastrado\n"
                 + "4. Listar todos os pets cadastrados\n"
                 + "5. Listar pet por algum critério (idade, nome, raça)\n"
                 + "6. Sair";

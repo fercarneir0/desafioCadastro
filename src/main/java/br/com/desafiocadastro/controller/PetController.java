@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.function.Predicate;
 
 
@@ -22,8 +21,6 @@ public class PetController {
     private List<Pet> pets = new ArrayList<>();
     FileMenu file = new FileMenu();
     ConsoleInput input = new ConsoleInput();
-    Scanner scan = new Scanner(System.in);
-
 
     public void cadastrarPet(Pet pet) {
         try {
@@ -37,8 +34,7 @@ public class PetController {
 
             pets.add(pet);
             gerarArquivo(pet);
-
-            System.out.println("Pets cadastrados : " + pets.size());
+            System.out.println("Animal " + pet.getNome() + " cadastrado com sucesso! ✅");
         } catch (RuntimeException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
@@ -51,12 +47,17 @@ public class PetController {
             listarPets();
             int escolha = input.lerInt("Selecione um dos pets para remover:");
 
+            if (escolha < 1 || escolha > pets.size()) {
+                System.out.println("Pet inválido!");
+                return;
+            }
+
             String mensagemConfirmacao = "Confirma a exclusão do animal?\n" +
                     "1 - Sim / 2 - Não";
             int escolhaConfirmacao = input.lerInt(mensagemConfirmacao);
             if (escolhaConfirmacao == 1) {
                 pets.remove(escolha - 1);
-                System.out.println("Animal" + pet.getNome() + " removido com  sucesso!");
+                System.out.println("Animal " + pet.getNome() + " removido com  sucesso! ✅");
             }
         } catch (IllegalArgumentException e) {
             System.out.println("Não foi possível remover o animal");
@@ -94,37 +95,38 @@ public class PetController {
                     case 1:
                         String nome = input.lerString("Digite o novo nome:");
                         pet.setNome(nome);
-                        System.out.println("Nome alterado com sucesso!");
+                        System.out.println("Nome alterado com sucesso! ✅");
                         break;
                     case 2:
                         String endereco = input.lerString("Digite o novo endereço:");
                         pet.setEndereco(endereco);
-                        System.out.println("Endereço alterado com sucesso!");
+                        System.out.println("Endereço alterado com sucesso! ✅");
                         break;
                     case 3:
                         double idade = input.lerDouble("Digite a nova idade:");
                         pet.setIdade(idade);
-                        System.out.println("Idade alterada com sucesso!");
+                        System.out.println("Idade alterada com sucesso! ✅");
                         break;
                     case 4:
                         double peso = input.lerDouble("Digite o novo peso:");
                         pet.setPeso(peso);
-                        System.out.println("Peso alterado com sucesso!");
+                        System.out.println("Peso alterado com sucesso! ✅");
                         break;
                     case 5:
                         String raca = input.lerString("Digite a nova raça:");
                         pet.setRaca(raca);
-                        System.out.println("Raça alterada com sucesso!");
+                        System.out.println("Raça alterada com sucesso! ✅");
                         break;
                     case 6:
                         System.out.println("Voltando...");
                         break;
                     default:
                         System.out.println("Opção inválida!");
+                        break;
                 }
 
             } while (opcao != 6);
-
+            System.out.println("Animal " + pet.getNome() + " alterado com sucesso! ✅");
         } catch (IllegalArgumentException e) {
             System.out.println("Não foi possível alterar o animal");
             System.out.println(e.getMessage());
@@ -265,7 +267,6 @@ public class PetController {
             bw.write("6 - " + pet.getPeso());
             bw.newLine();
             bw.write("7 - " + pet.getRaca());
-            System.out.println("Animal " + pet.getNome() + " cadastrado com sucesso! ✅");
         } catch (IOException e) {
             System.out.println("Erro ao gerar o arquivo: " + e.getMessage());
         }
@@ -281,8 +282,8 @@ public class PetController {
         int i = 0;
         for (Pet pet : pets) {
             i++;
-            System.out.println("[" + i + "]" + " - " + pet.getNome());
-
+            System.out.println(i + ". " + pet.getNome() + " - " + pet.getTipoAnimal() + " - " + pet.getSexoAnimal() + " - " + pet.getEndereco() +
+                    " - " + pet.getIdade() + " anos - " + pet.getRaca());
         }
     }
 
