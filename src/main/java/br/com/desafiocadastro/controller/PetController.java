@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.function.Predicate;
 
 
@@ -21,6 +22,7 @@ public class PetController {
     private List<Pet> pets = new ArrayList<>();
     FileMenu file = new FileMenu();
     ConsoleInput input = new ConsoleInput();
+    Scanner scan = new Scanner(System.in);
 
 
     public void cadastrarPet(Pet pet) {
@@ -46,9 +48,8 @@ public class PetController {
 
     public void removerPet(Pet pet) {
         try {
-            String mensagem = "Selecione um dos pets para remover: ";
             listarPets();
-            int escolha = input.lerInt(mensagem);
+            int escolha = input.lerInt("Selecione um dos pets para remover:");
 
             String mensagemConfirmacao = "Confirma a exclusão do animal?\n" +
                     "1 - Sim / 2 - Não";
@@ -59,6 +60,73 @@ public class PetController {
             }
         } catch (IllegalArgumentException e) {
             System.out.println("Não foi possível remover o animal");
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void alterarPet(Pet pet) {
+        try {
+            listarPets();
+
+            int escolha = input.lerInt("Selecione o pet que deseja alterar:");
+
+            if (escolha < 1 || escolha > pets.size()) {
+                System.out.println("Pet inválido!");
+                return;
+            }
+
+            pet = pets.get(escolha - 1);
+
+            int opcao;
+            do {
+                System.out.println("\nO que deseja alterar?");
+                System.out.println("1 - Nome");
+                System.out.println("2 - Endereço");
+                System.out.println("3 - Idade");
+                System.out.println("4 - Peso");
+                System.out.println("5 - Raça");
+                System.out.println("6 - Voltar");
+
+                opcao = input.lerInt("Escolha uma opção:");
+
+                switch (opcao) {
+
+                    case 1:
+                        String nome = input.lerString("Digite o novo nome:");
+                        pet.setNome(nome);
+                        System.out.println("Nome alterado com sucesso!");
+                        break;
+                    case 2:
+                        String endereco = input.lerString("Digite o novo endereço:");
+                        pet.setEndereco(endereco);
+                        System.out.println("Endereço alterado com sucesso!");
+                        break;
+                    case 3:
+                        double idade = input.lerDouble("Digite a nova idade:");
+                        pet.setIdade(idade);
+                        System.out.println("Idade alterada com sucesso!");
+                        break;
+                    case 4:
+                        double peso = input.lerDouble("Digite o novo peso:");
+                        pet.setPeso(peso);
+                        System.out.println("Peso alterado com sucesso!");
+                        break;
+                    case 5:
+                        String raca = input.lerString("Digite a nova raça:");
+                        pet.setRaca(raca);
+                        System.out.println("Raça alterada com sucesso!");
+                        break;
+                    case 6:
+                        System.out.println("Voltando...");
+                        break;
+                    default:
+                        System.out.println("Opção inválida!");
+                }
+
+            } while (opcao != 6);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Não foi possível alterar o animal");
             System.out.println(e.getMessage());
         }
     }

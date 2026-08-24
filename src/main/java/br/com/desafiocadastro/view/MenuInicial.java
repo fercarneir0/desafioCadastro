@@ -31,7 +31,7 @@ public class MenuInicial {
                     controller.cadastrarPet(pet);
                     break;
                 case 2:
-                    System.out.println("alterar dados");
+                    controller.alterarPet(pet);
                     break;
                 case 3:
                     controller.removerPet(pet);
