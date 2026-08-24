@@ -9,11 +9,9 @@ public class Pet {
     private TipoAnimal tipoAnimal;
     private SexoAnimal sexoAnimal;
     private String endereco;
-    private String bairro;
     private double idade;
     private double peso;
     private String raca;
-
 
     public String getNome() {
         return nome;
@@ -52,15 +50,6 @@ public class Pet {
         }
         this.endereco = endereco;
     }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
     public double getIdade() {
         return idade;
     }

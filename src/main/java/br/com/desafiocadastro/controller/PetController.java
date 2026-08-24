@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.function.Predicate;
 
 
@@ -42,6 +41,21 @@ public class PetController {
             e.printStackTrace();
             System.out.println(e.getMessage());
             System.out.println("Não foi possível cadastrar o animal");
+        }
+    }
+
+    public void removerPet(Pet pet) {
+        try {
+            String mensagem = ("Selecione um dos pets para remover: ");
+            listarPets();
+            int escolha = input.lerInt(mensagem);
+            int indice = escolha - 1;
+
+            pets.remove(indice);
+            System.out.println("Animal" +  pet.getNome() + " removido com  sucesso");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Não foi possível remover o animal");
+            System.out.println(e.getMessage());
         }
     }
 
@@ -195,53 +209,53 @@ public class PetController {
         int i = 0;
         for (Pet pet : pets) {
             i++;
-            System.out.println("[" + i + "]"+ " - " + pet.getNome());
+            System.out.println("[" + i + "]" + " - " + pet.getNome());
 
         }
     }
 
-    public Predicate<Pet> filtroNome(String nome){
+    public Predicate<Pet> filtroNome(String nome) {
         return pet -> pet.getNome()
                 .toLowerCase()
                 .contains(nome.toLowerCase());
     }
 
-    public Predicate<Pet> filtroTipoAnimal(int codigoEspecie){
+    public Predicate<Pet> filtroTipoAnimal(int codigoEspecie) {
         TipoAnimal tipoAnimal = TipoAnimal.getTipoPorCodigo(codigoEspecie);
         return pet -> pet.getTipoAnimal() == tipoAnimal;
     }
 
-    public Predicate<Pet> filtroSexoAnimal(int codigoSexo){
+    public Predicate<Pet> filtroSexoAnimal(int codigoSexo) {
         SexoAnimal sexoAnimal = SexoAnimal.getTipoPorCodigo(codigoSexo);
         return pet -> pet.getSexoAnimal() == sexoAnimal;
     }
 
-    public Predicate<Pet> filtroPesoAnimal(double peso){
+    public Predicate<Pet> filtroPesoAnimal(double peso) {
         return pet -> pet.getPeso() == peso;
     }
 
-    public Predicate<Pet> filtroIdadeAnimal(double idade){
+    public Predicate<Pet> filtroIdadeAnimal(double idade) {
         return pet -> pet.getIdade() == idade;
     }
 
-    public Predicate<Pet> filtroRacaAnimal(String raca){
+    public Predicate<Pet> filtroRacaAnimal(String raca) {
         return pet -> pet.getRaca()
                 .toLowerCase()
                 .contains(raca.toLowerCase());
     }
 
-    public Predicate<Pet> filtroEnderecoAnimal(String endereco){
+    public Predicate<Pet> filtroEnderecoAnimal(String endereco) {
         return pet -> pet.getEndereco()
                 .toLowerCase()
                 .contains(endereco.toLowerCase());
     }
 
-    public List<Pet> filtrarPets(Predicate<Pet> filtro){
+    public List<Pet> filtrarPets(Predicate<Pet> filtro) {
         List<Pet> encontrados = new ArrayList<>();
 
         for (Pet pet : pets) {
 
-            if(filtro.test(pet)){
+            if (filtro.test(pet)) {
                 encontrados.add(pet);
             }
         }
