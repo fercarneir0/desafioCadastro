@@ -44,7 +44,7 @@ public class PetController {
         }
     }
 
-    public void removerPet(Pet pet) {
+    public void removerPet() {
         try {
             listarPets();
             int escolha = input.lerInt("Selecione um dos pets para remover:");
@@ -59,7 +59,7 @@ public class PetController {
             int escolhaConfirmacao = input.lerInt(mensagemConfirmacao);
             if (escolhaConfirmacao == 1) {
                 pets.remove(escolha - 1);
-                System.out.println("Animal " + pet.getNome() + " removido com  sucesso! ✅");
+                System.out.println("Animal removido com  sucesso! ✅");
             }
         } catch (IllegalArgumentException e) {
             System.out.println("Não foi possível remover o animal");
@@ -67,7 +67,7 @@ public class PetController {
         }
     }
 
-    public void alterarPet(Pet pet) {
+    public void alterarPet() {
         try {
             listarPets();
 
@@ -78,18 +78,17 @@ public class PetController {
                 return;
             }
 
-            pet = pets.get(escolha - 1);
+            Pet pet = pets.get(escolha - 1);
 
             int opcao;
             do {
-                System.out.println("\nO que deseja alterar?");
-                System.out.println("1 - Nome");
-                System.out.println("2 - Endereço");
-                System.out.println("3 - Idade");
-                System.out.println("4 - Peso");
-                System.out.println("5 - Raça");
-                System.out.println("6 - Voltar");
-
+                System.out.println("\nO que deseja alterar?\n" +
+                        "1. Nome" +
+                        "2. Endereço" +
+                        "3. Idade" +
+                        "4. Peso" +
+                        "5. Raca" +
+                        "6. Voltar");
                 opcao = input.lerInt("Escolha uma opção:");
 
                 switch (opcao) {
@@ -136,9 +135,8 @@ public class PetController {
     }
 
     public void cadastrarNome(Pet pet) {
-        String nomeDigitado = input.lerString(file.pegarLinhas(0));
-
         while (true) {
+            String nomeDigitado = input.lerString(file.pegarLinhas(0));
             try {
                 pet.setNome(nomeDigitado);
                 break;
@@ -237,11 +235,11 @@ public class PetController {
 
     public void gerarArquivo(Pet pet) {
         LocalDateTime localDateTime = LocalDateTime.now();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd_Hhmm");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd'T'Hhmm");
 
         String dataFormatada = localDateTime.format(dateTimeFormatter);
         String caminhoPasta = "src\\petsCadastrados";
-        String nomeArquivo = dataFormatada + "-" + pet.getNome();
+        String nomeArquivo = dataFormatada + "-" + pet.getNome().toUpperCase();
 
         if (pet.getNome() == null) {
             System.out.println("Erro: Pet inválido ou sem nome. Por favor, tente novamente!");
