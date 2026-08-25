@@ -44,101 +44,102 @@ public class PetController {
         }
     }
 
-    public void removerPet(Pet pet) {
-        try {
-            listarPets();
-            int escolha = input.lerInt("Selecione um dos pets para remover:");
+    public void removerPet() {
+        while(true){
+            try {
+                listarPets();
+                int escolha = input.lerInt("Selecione um dos pets para remover:");
 
-            if (escolha < 1 || escolha > pets.size()) {
-                System.out.println("Pet inválido!");
-                return;
-            }
+                if (escolha < 1 || escolha > pets.size()) {
+                    System.out.println("Pet inválido!");
+                    return;
+                }
 
-            String mensagemConfirmacao = "Confirma a exclusão do animal?\n" +
-                    "1 - Sim / 2 - Não";
-            int escolhaConfirmacao = input.lerInt(mensagemConfirmacao);
-            if (escolhaConfirmacao == 1) {
-                pets.remove(escolha - 1);
-                System.out.println("Animal " + pet.getNome() + " removido com  sucesso! ✅");
+                String mensagemConfirmacao = "Confirma a exclusão do animal?\n" +
+                        "1 - Sim / 2 - Não";
+                int escolhaConfirmacao = input.lerInt(mensagemConfirmacao);
+                if (escolhaConfirmacao == 1) {
+                    pets.remove(escolha - 1);
+                    System.out.println("Animal removido com  sucesso! ✅");
+                    break;
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("Não foi possível remover o animal");
+                System.out.println(e.getMessage());
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println("Não foi possível remover o animal");
-            System.out.println(e.getMessage());
         }
     }
 
-    public void alterarPet(Pet pet) {
-        try {
-            listarPets();
+    public void alterarPet() {
+        while (true) {
+            try {
+                listarPets();
+                int escolha = input.lerInt("Selecione o pet que deseja alterar:");
 
-            int escolha = input.lerInt("Selecione o pet que deseja alterar:");
-
-            if (escolha < 1 || escolha > pets.size()) {
-                System.out.println("Pet inválido!");
-                return;
-            }
-
-            pet = pets.get(escolha - 1);
-
-            int opcao;
-            do {
-                System.out.println("\nO que deseja alterar?");
-                System.out.println("1 - Nome");
-                System.out.println("2 - Endereço");
-                System.out.println("3 - Idade");
-                System.out.println("4 - Peso");
-                System.out.println("5 - Raça");
-                System.out.println("6 - Voltar");
-
-                opcao = input.lerInt("Escolha uma opção:");
-
-                switch (opcao) {
-
-                    case 1:
-                        String nome = input.lerString("Digite o novo nome:");
-                        pet.setNome(nome);
-                        System.out.println("Nome alterado com sucesso! ✅");
-                        break;
-                    case 2:
-                        String endereco = input.lerString("Digite o novo endereço:");
-                        pet.setEndereco(endereco);
-                        System.out.println("Endereço alterado com sucesso! ✅");
-                        break;
-                    case 3:
-                        double idade = input.lerDouble("Digite a nova idade:");
-                        pet.setIdade(idade);
-                        System.out.println("Idade alterada com sucesso! ✅");
-                        break;
-                    case 4:
-                        double peso = input.lerDouble("Digite o novo peso:");
-                        pet.setPeso(peso);
-                        System.out.println("Peso alterado com sucesso! ✅");
-                        break;
-                    case 5:
-                        String raca = input.lerString("Digite a nova raça:");
-                        pet.setRaca(raca);
-                        System.out.println("Raça alterada com sucesso! ✅");
-                        break;
-                    case 6:
-                        System.out.println("Voltando...");
-                        break;
-                    default:
-                        System.out.println("Opção inválida!");
-                        break;
+                if (escolha < 1 || escolha > pets.size()) {
+                    System.out.println("Pet inválido!");
+                    return;
                 }
 
-            } while (opcao != 6);
-            System.out.println("Animal " + pet.getNome() + " alterado com sucesso! ✅");
-        } catch (IllegalArgumentException e) {
-            System.out.println("Não foi possível alterar o animal");
-            System.out.println(e.getMessage());
+                Pet pet = pets.get(escolha - 1);
+
+                int opcao;
+                do {
+                    System.out.println("\nO que deseja alterar?\n" +
+                            "1. Nome\n" +
+                            "2. Endereço\n" +
+                            "3. Idade\n" +
+                            "4. Peso\n" +
+                            "5. Raça\n" +
+                            "6. Voltar\n");
+                    opcao = input.lerInt("Escolha uma opção:");
+
+                    switch (opcao) {
+
+                        case 1:
+                            String nome = input.lerString("Digite o novo nome:");
+                            pet.setNome(nome);
+                            System.out.println("Nome alterado com sucesso! ✅");
+                            break;
+                        case 2:
+                            String endereco = input.lerString("Digite o novo endereço:");
+                            pet.setEndereco(endereco);
+                            System.out.println("Endereço alterado com sucesso! ✅");
+                            break;
+                        case 3:
+                            double idade = input.lerDouble("Digite a nova idade:");
+                            pet.setIdade(idade);
+                            System.out.println("Idade alterada com sucesso! ✅");
+                            break;
+                        case 4:
+                            double peso = input.lerDouble("Digite o novo peso:");
+                            pet.setPeso(peso);
+                            System.out.println("Peso alterado com sucesso! ✅");
+                            break;
+                        case 5:
+                            String raca = input.lerString("Digite a nova raça:");
+                            pet.setRaca(raca);
+                            System.out.println("Raça alterada com sucesso! ✅");
+                            break;
+                        case 6:
+                            System.out.println("Voltando...");
+                            break;
+                        default:
+                            System.out.println("Opção inválida!");
+                            break;
+                    }
+                } while (opcao != 6);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Não foi possível alterar o animal");
+                System.out.println(e.getMessage());
+            }
         }
     }
 
     public void cadastrarNome(Pet pet) {
-        String nomeDigitado = input.lerString(file.pegarLinhas(0));
-
         while (true) {
+            String nomeDigitado = input.lerString(file.pegarLinhas(0));
             try {
                 pet.setNome(nomeDigitado);
                 break;
@@ -237,11 +238,11 @@ public class PetController {
 
     public void gerarArquivo(Pet pet) {
         LocalDateTime localDateTime = LocalDateTime.now();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd_Hhmm");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd'T'Hhmm");
 
         String dataFormatada = localDateTime.format(dateTimeFormatter);
         String caminhoPasta = "src\\petsCadastrados";
-        String nomeArquivo = dataFormatada + "-" + pet.getNome();
+        String nomeArquivo = dataFormatada + "-" + pet.getNome().toUpperCase();
 
         if (pet.getNome() == null) {
             System.out.println("Erro: Pet inválido ou sem nome. Por favor, tente novamente!");

@@ -1,12 +1,9 @@
 package br.com.desafiocadastro.view;
 
 import br.com.desafiocadastro.controller.PetController;
-import br.com.desafiocadastro.domain.enums.SexoAnimal;
-import br.com.desafiocadastro.domain.enums.TipoAnimal;
 import br.com.desafiocadastro.domain.model.Pet;
 
 import java.awt.*;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class MenuInicial {
@@ -15,7 +12,6 @@ public class MenuInicial {
     public void menu() {
         PetController controller = new PetController();
         Scanner scan = new Scanner(System.in);
-        Pet pet = new Pet();
         String menu = "---------------- MENU ----------------\n"
                 +"1. Cadastrar novo pet\n"
                 + "2. Alterar os dados do pet cadastrado\n"
@@ -29,13 +25,14 @@ public class MenuInicial {
             escolha = scan.nextInt();
             switch (escolha) {
                 case 1:
+                    Pet pet = new Pet();
                     controller.cadastrarPet(pet);
                     break;
                 case 2:
-                    controller.alterarPet(pet);
+                    controller.alterarPet();
                     break;
                 case 3:
-                    controller.removerPet(pet);
+                    controller.removerPet();
                     break;
                 case 4:
                     controller.listarPets();

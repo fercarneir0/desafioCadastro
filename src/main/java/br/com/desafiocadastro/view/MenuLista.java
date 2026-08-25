@@ -139,6 +139,7 @@ public class MenuLista {
                         System.out.println("Animais encontrados: ");
                         int i = 0;
                         for (Pet pet : petRaca) {
+                            i++;
                             System.out.println(i + ". " + pet.getNome() + " - " + pet.getTipoAnimal() + " - " + pet.getSexoAnimal() + " - " + pet.getEndereco() +
                                     " - " + df.format(pet.getIdade()) + " anos - " + pet.getRaca());
                         }
@@ -158,6 +159,7 @@ public class MenuLista {
                         System.out.println("Animais encontrados: ");
                         int i = 0;
                         for (Pet pet : petEndereco) {
+                            i++;
                             System.out.println(i + ". " + pet.getNome() + " - " + pet.getTipoAnimal() + " - " + pet.getSexoAnimal() + " - " + pet.getEndereco() +
                                     " - " + df.format(pet.getIdade()) + " anos - " + pet.getRaca());
                         }

@@ -19,7 +19,7 @@ public class Pet {
 
     public void setNome(String nome) {
         if(nome == null || !nome.matches("[a-zA-ZÀ-ÿ\\s]+")){
-            throw new IllegalArgumentException("O nome do animal deve conter apenas letras e espaços");
+            throw new IllegalArgumentException("O nome do animal não pode ser nulo e não deve conter caracteres especiais");
         }
         this.nome = nome;
     }

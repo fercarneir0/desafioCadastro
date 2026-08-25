@@ -1,6 +1,5 @@
 package br.com.desafiocadastro;
 
-import br.com.desafiocadastro.controller.PetController;
 import br.com.desafiocadastro.view.MenuInicial;
 
 import java.awt.*;
