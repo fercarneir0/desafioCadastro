@@ -61,6 +61,7 @@ public class PetController {
                 if (escolhaConfirmacao == 1) {
                     pets.remove(escolha - 1);
                     System.out.println("Animal removido com  sucesso! ✅");
+                    break;
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println("Não foi possível remover o animal");
@@ -85,12 +86,12 @@ public class PetController {
                 int opcao;
                 do {
                     System.out.println("\nO que deseja alterar?\n" +
-                            "1. Nome" +
-                            "2. Endereço" +
-                            "3. Idade" +
-                            "4. Peso" +
-                            "5. Raca" +
-                            "6. Voltar");
+                            "1. Nome\n" +
+                            "2. Endereço\n" +
+                            "3. Idade\n" +
+                            "4. Peso\n" +
+                            "5. Raça\n" +
+                            "6. Voltar\n");
                     opcao = input.lerInt("Escolha uma opção:");
 
                     switch (opcao) {
@@ -127,9 +128,8 @@ public class PetController {
                             System.out.println("Opção inválida!");
                             break;
                     }
-
                 } while (opcao != 6);
-                System.out.println("Animal " + pet.getNome() + " alterado com sucesso! ✅");
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println("Não foi possível alterar o animal");
                 System.out.println(e.getMessage());
