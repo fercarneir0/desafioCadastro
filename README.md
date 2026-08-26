@@ -32,7 +32,6 @@ Com essa abordagem, os filtros podem ser combinados de acordo com a necessidade 
 - CLI (Command-Line Interface)
 - Collections / `List`
 - `Predicate`
-- Enums
 - Tratamento de exceções
 - Manipulação de arquivos
 - Java IO
