@@ -51,7 +51,8 @@ A aplicação funciona via **CLI (Command-Line Interface)**, com todas as funcio
    ```bash
    git clone <URL_DO_REPOSITORIO>
 
-   2. Abra o projeto na sua IDE de preferência.
+
+2. Abra o projeto na sua IDE de preferência.   
 3. Localize a classe `Main`.
 4. Execute o método `main`.
 5. O menu da aplicação será exibido no console.
