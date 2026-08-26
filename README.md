@@ -14,6 +14,8 @@ YouTube: [@devmagro 🎥](https://www.youtube.com/@devmagro)
 
 Este projeto foi desenvolvido como parte do **Desafio Cadastro do DevMagro**, com o objetivo de colocar em prática conceitos de **Java, Programação Orientada a Objetos e boas práticas de desenvolvimento**.
 
+Link do desafio com as regras: **https://github.com/karilho/desafioCadastro**
+
 A aplicação consiste em um **sistema de cadastro e gerenciamento de pets via CLI (Command-Line Interface)**, permitindo cadastrar, listar, buscar, alterar e remover animais.
 
 Durante todo o desenvolvimento, busquei seguir o princípio de **responsabilidade única**, procurando manter cada função responsável por uma tarefa específica. Essa abordagem ajudou a manter o código mais organizado, legível e fácil de evoluir.
