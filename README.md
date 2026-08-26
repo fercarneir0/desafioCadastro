@@ -2,12 +2,7 @@
 
 ### Desafio criado por Lucas Carrilho - [@devmagro](https://www.linkedin.com/in/karilho/)
 
-Twitter: [@devmagro 🐦 ](https://x.com/devmagro)
-
-Instagram: [@devmagro 📸](https://instagram.com/devmagro)
-
-YouTube: [@devmagro 🎥](https://www.youtube.com/@devmagro)
-
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Luís%20Fernando-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/luisfernandocarneiro/)
 ---
 
 ## 📌 Sobre o projeto
